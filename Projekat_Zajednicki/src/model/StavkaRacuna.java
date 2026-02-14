@@ -1,0 +1,118 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package model;
+
+import java.sql.ResultSet;
+import java.util.List;
+
+/**
+ *
+ * @author Nadja
+ */
+public class StavkaRacuna implements ApstraktniDomenskiObjekat {
+
+    private Racun racunID;
+    private int rb;
+    private double iznos;
+    private int kolicina;
+    private double cena;
+    private Knjiga knjigaID;
+
+    public StavkaRacuna() {
+    }
+
+    public StavkaRacuna(Racun racunID, int rb, double iznos, int kolicina, double cena, Knjiga knjigaID) {
+        this.racunID = racunID;
+        this.rb = rb;
+        this.iznos = iznos;
+        this.kolicina = kolicina;
+        this.cena = cena;
+        this.knjigaID = knjigaID;
+    }
+
+    public Racun getRacunID() {
+        return racunID;
+    }
+
+    public void setRacunID(Racun racunID) {
+        this.racunID = racunID;
+    }
+
+    public int getRb() {
+        return rb;
+    }
+
+    public void setRb(int rb) {
+        this.rb = rb;
+    }
+
+    public double getIznos() {
+        return iznos;
+    }
+
+    public void setIznos(double iznos) {
+        this.iznos = iznos;
+    }
+
+    public int getKolicina() {
+        return kolicina;
+    }
+
+    public void setKolicina(int kolicina) {
+        this.kolicina = kolicina;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public void setCena(double cena) {
+        this.cena = cena;
+    }
+
+    public Knjiga getKnjigaID() {
+        return knjigaID;
+    }
+
+    public void setKnjigaID(Knjiga knjigaID) {
+        this.knjigaID = knjigaID;
+    }
+
+    @Override
+    public String vratiNazivTabele() {
+        return "stavkaracuna";
+    }
+
+    @Override
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiKoloneZaUbacivanje() {
+        return "rd,iznos,kolicina,cena,knjigaID";
+    }
+
+    @Override
+    public String vratiVrednostiZaUbacivanje() {
+        return rb+", "+iznos+", "+kolicina+", "+cena+", "+knjigaID.getKnjigaID();
+    }
+
+    @Override
+    public String vratiPrimarniKljuc() {
+        return "stavkaracuna.racunID="+racunID.getRacunID()+" AND rb+"+rb;
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiVrednostiZaIzmenu() {
+       return "iznos=" + iznos + ", kolicina=" + kolicina + ", cena=" + cena + ", knjigaID=" + knjigaID.getKnjigaID();
+    }
+
+}
