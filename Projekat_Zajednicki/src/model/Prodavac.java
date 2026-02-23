@@ -95,14 +95,12 @@ public class Prodavac implements ApstraktniDomenskiObjekat {
             return false;
         }
         final Prodavac other = (Prodavac) obj;
-        if (!Objects.equals(this.imePrezime, other.imePrezime)) {
+        if (!Objects.equals(this.korisnickoIme, other.korisnickoIme)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        return Objects.equals(this.korisnickoIme, other.korisnickoIme);
+        return Objects.equals(this.lozinka, other.lozinka);
     }
+
 
     @Override
     public String vratiNazivTabele() {

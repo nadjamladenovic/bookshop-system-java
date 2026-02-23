@@ -4,6 +4,9 @@
  */
 package controller;
 
+import model.Prodavac;
+import operacija.login.LoginOperacija;
+
 /**
  *
  * @author Nadja
@@ -20,5 +23,14 @@ public class Controller {
             instance = new Controller();
         }
         return instance;
+    }
+
+    public Prodavac login(Prodavac p) throws Exception {
+          //da proveri dalje u bazi  
+        LoginOperacija operacija = new LoginOperacija();
+        operacija.izvrsi(p, null);
+        System.out.println("KLASA CONTROLLER login: " + operacija.getProdavac());
+        
+        return operacija.getProdavac(); // vraca ga dalje u OKZ
     }
 }

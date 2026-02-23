@@ -10,10 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
-import static komunikacija.Operacija.LOGIN;
+
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
 import komunikacija.Zahtev;
+import model.Prodavac;
 
 /**
  *
@@ -24,9 +25,9 @@ public class ObradaKlijentskihZahteva extends Thread {
     Socket s;
     Posiljalac posiljalac;
     Primalac primalac;
-    boolean kraj=false;
+    boolean kraj = false;
 
-    public ObradaKlijentskihZahteva(Socket s) {
+    public ObradaKlijentskihZahteva(Socket s) {// prim i posilj rade preko istog soketa na portu 9000
         this.s = s;
         this.posiljalac = new Posiljalac(s);
         this.primalac = new Primalac(s);
@@ -35,28 +36,41 @@ public class ObradaKlijentskihZahteva extends Thread {
     public ObradaKlijentskihZahteva() {
     }
 
+    // posto je nit moramo da implementiramo run metodu
+    // ona treba da osluskuje i ceka kada cemo mi da primimo zahtev
     @Override
     public void run() {
         while (!kraj) {
             Zahtev zahtev = (Zahtev) primalac.primi();
-            Odgovor odgovor=new Odgovor();
-            switch(zahtev.getOperacija()) {
-               case LOGIN:
-                    
-                 //   break;
-                default:
-                    System.out.println("Greska, operacija ne postoji!");
+            Odgovor odgovor = new Odgovor();
+            try {
+                switch (zahtev.getOperacija()) {
+                    case LOGIN:
+                        Prodavac p = (Prodavac) zahtev.getParametar();
+                        p = controller.Controller.getInstance().login(p); // hocu da ga setujem nazad u odgovor 
+                        odgovor.setOdgovor(p);
+                        break;
+                    //case: komunikacija.Operacija.LOGOUT:
+
+                 
+                    default:
+                        System.out.println("Greska, operacija ne postoji!");
+                }
+                posiljalac.posalji(odgovor);
+            } catch (Exception ex) {
+                odgovor.setOdgovor(ex.getMessage());
+                posiljalac.posalji(odgovor);
             }
-            posiljalac.posalji(odgovor);
         }
     }
-public void prekini(){
-    kraj=true;
+
+    public void prekini() {
+        kraj = true;
         try {
             s.close();
         } catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
         }
-    interrupt();
-}
+        interrupt();
+    }
 }

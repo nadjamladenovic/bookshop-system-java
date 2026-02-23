@@ -11,22 +11,22 @@ import java.io.Serializable;
  * @author Nadja
  */
 public class Zahtev implements Serializable {
-    private Object operacija;
+    private Operacija operacija;
     private Object parametar;
 
     public Zahtev() {
     }
 
-    public Zahtev(Object operacija, Object parametar) {
+    public Zahtev(Operacija operacija, Object parametar) {
         this.operacija = operacija;
         this.parametar = parametar;
     }
 
-    public Object getOperacija() {
+    public Operacija getOperacija() {
         return operacija;
     }
 
-    public void setOperacija(Object operacija) {
+    public void setOperacija(Operacija operacija) {
         this.operacija = operacija;
     }
 

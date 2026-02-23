@@ -11,21 +11,21 @@ import java.io.Serializable;
  * @author Nadja
  */
 public class Odgovor implements Serializable {
-    private Object odgvor;
+    private Object odgovor;
 
     public Odgovor() {
     }
 
-    public Odgovor(Object odgvor) {
-        this.odgvor = odgvor;
+    public Odgovor(Object odgovor) {
+        this.odgovor = odgovor;
     }
 
-    public Object getOdgvor() {
-        return odgvor;
+    public Object getOdgovor() {
+        return odgovor;
     }
 
-    public void setOdgvor(Object odgvor) {
-        this.odgvor = odgvor;
+    public void setOdgovor(Object odgovor) {
+        this.odgovor = odgovor;
     }
     
 }
