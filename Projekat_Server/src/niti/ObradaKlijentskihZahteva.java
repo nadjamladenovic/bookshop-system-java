@@ -42,42 +42,53 @@ public class ObradaKlijentskihZahteva extends Thread {
     // ona treba da osluskuje i ceka kada cemo mi da primimo zahtev
     @Override
     public void run() {
-        while (!kraj) {
-            Zahtev zahtev = (Zahtev) primalac.primi();
-            Odgovor odgovor = new Odgovor();
-            try {
-                switch (zahtev.getOperacija()) {
-                    case LOGIN:
-                        Prodavac p = (Prodavac) zahtev.getParametar();
-                        p = controller.Controller.getInstance().login(p); // hocu da ga setujem nazad u odgovor 
-                        odgovor.setOdgovor(p);
-                        break;
-                    case UCITAJ_PRODAVCE:
-                        List<Prodavac> prodavci = Controller.getInstance().prikaziProdavce(); // ovde treba iz baze da se ucita -- idem preko kontrolera
-                        odgovor.setOdgovor(prodavci);
-                        break;
-                    case OBRISI_PRODAVCA:
+        try {
+            while (!kraj) {
+                Zahtev zahtev = (Zahtev) primalac.primi();
+                Odgovor odgovor = new Odgovor();
+                try {
+                    switch (zahtev.getOperacija()) {
+                        case LOGIN:
+                            Prodavac p = (Prodavac) zahtev.getParametar();
+                            p = controller.Controller.getInstance().login(p); // hocu da ga setujem nazad u odgovor 
+                            odgovor.setOdgovor(p);
+                            break;
+                        case UCITAJ_PRODAVCE:
+                            List<Prodavac> prodavci = Controller.getInstance().prikaziProdavce(); // ovde treba iz baze da se ucita -- idem preko kontrolera
+                            odgovor.setOdgovor(prodavci);
+                            break;
+                        case OBRISI_PRODAVCA:
                         try {
-                        Prodavac prodavac = (Prodavac) zahtev.getParametar();
-                        Controller.getInstance().obrisiProdavca(prodavac);
-                        odgovor.setOdgovor(null);
-                    } catch (Exception e) {
-                        odgovor.setOdgovor(e);
-                    }
-                    break;
-                    case DODAJ_PRODAVCA:
-                        Prodavac prodavac = (Prodavac) zahtev.getParametar();
-                        Controller.getInstance().dodajProdavca(prodavac);
-                        odgovor.setOdgovor(null); // u klij str u komunikac
+                            Prodavac prodavac = (Prodavac) zahtev.getParametar();
+                            Controller.getInstance().obrisiProdavca(prodavac);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
                         break;
-                    default:
-                        System.out.println("Greska, operacija ne postoji!");
+                        case DODAJ_PRODAVCA:
+                            Prodavac prodavac = (Prodavac) zahtev.getParametar();
+                            Controller.getInstance().dodajProdavca(prodavac);
+                            odgovor.setOdgovor(null); // u klij str u komunikac
+                            break;
+                        case AZURIRAJ_PRODAVCA:
+                            Prodavac prodavacA = (Prodavac) zahtev.getParametar();
+                            Controller.getInstance().azurirajProdavca(prodavacA);
+                            odgovor.setOdgovor("Uspesno"); // u klij str u komunikac
+                            break;
+                        default:
+                            System.out.println("Greska, operacija ne postoji!");
+                    }
+                    posiljalac.posalji(odgovor);
+                } catch (Exception ex) {
+                    odgovor.setOdgovor(ex.getMessage());
+                    posiljalac.posalji(odgovor);
                 }
-                posiljalac.posalji(odgovor);
-            } catch (Exception ex) {
-                odgovor.setOdgovor(ex.getMessage());
-                posiljalac.posalji(odgovor);
             }
+        } catch (Exception ex) {
+            System.out.println("Klijent se odjavio (Vezu prekinuo klijent).");
+        } finally {
+            prekini(); // Obavezno zatvori soket na serverskoj strani
         }
     }
 

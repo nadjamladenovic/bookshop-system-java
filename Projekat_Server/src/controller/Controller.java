@@ -7,6 +7,7 @@ package controller;
 import java.util.List;
 import model.Prodavac;
 import operacija.login.LoginOperacija;
+import operacija.prodavci.AzurirajProdavcaSO;
 import operacija.prodavci.DodajProdavcaSO;
 import operacija.prodavci.ObrisiProdavcaSO;
 import operacija.prodavci.UcitajProdavceSO;
@@ -52,7 +53,13 @@ public class Controller {
     }
 
     public void dodajProdavca(Prodavac prodavac) throws Exception {
-        DodajProdavcaSO operacija=new DodajProdavcaSO();
+        DodajProdavcaSO operacija = new DodajProdavcaSO();
+        System.out.println("DEBUG: Pozivam operacija.izvrsi za prodavca");
         operacija.izvrsi(prodavac, null); //--- ova metoda se izvrsava u okz
+    }
+
+    public void azurirajProdavca(Prodavac prodavacA) throws Exception {
+        AzurirajProdavcaSO operacija = new AzurirajProdavcaSO();
+        operacija.izvrsi(prodavacA, null);
     }
 }

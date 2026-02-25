@@ -5,6 +5,7 @@
 package forme.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 import model.Prodavac;
 
@@ -58,6 +59,15 @@ public class ModelTabeleProdavac extends AbstractTableModel{
 
     public void setLista(List<Prodavac> lista) {
         this.lista = lista;
+    }
+
+    public void pretrazi(String imePrezime, String email) {
+        List<Prodavac> filteredList = lista.stream()
+                .filter(p -> (imePrezime == null || imePrezime.isEmpty() || p.getImePrezime().toLowerCase().contains(imePrezime.toLowerCase())))
+                .filter(p -> (email == null || email.isEmpty() || p.getEmail().toLowerCase().contains(email.toLowerCase())))
+                .collect(Collectors.toList());
+        this.lista = filteredList;
+        fireTableDataChanged();
     }
     
 }

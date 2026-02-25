@@ -7,6 +7,7 @@ package forme;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -33,6 +34,15 @@ public class PrikazProdavacaForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProdavci = new javax.swing.JTable();
         jButtonObrisi = new javax.swing.JButton();
+        jButtonAzuriraj = new javax.swing.JButton();
+        jButtonOtkazi = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldIme = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jButtonPretrazi = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonResetuj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,36 +61,93 @@ public class PrikazProdavacaForma extends javax.swing.JFrame {
 
         jButtonObrisi.setText("Obrisi");
 
+        jButtonAzuriraj.setText("Azuriraj");
+
+        jButtonOtkazi.setText("Otkazi");
+        jButtonOtkazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOtkaziActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Ime i prezime:");
+
+        jLabel2.setText("Email:");
+
+        jButtonPretrazi.setText("Pretrazi");
+
+        jLabel4.setText("Tabela prodavaca");
+
+        jButtonResetuj.setText("Resetuj");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonObrisi)
-                .addGap(50, 50, 50))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldIme, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonPretrazi)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonObrisi)
+                            .addComponent(jButtonAzuriraj)
+                            .addComponent(jButtonOtkazi))
+                        .addGap(44, 44, 44))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jButtonResetuj)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
-                .addComponent(jButtonObrisi)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPretrazi))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonResetuj)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonObrisi)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonAzuriraj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonOtkazi))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(122, 122, 122))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOtkaziActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonOtkaziActionPerformed
+
     /**
      * @param args the command line arguments
      */
-
     /**
      * @param args the command line arguments
      */
@@ -91,15 +158,80 @@ public class PrikazProdavacaForma extends javax.swing.JFrame {
     public JButton getjButtonObrisi() {
         return jButtonObrisi;
     }
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAzuriraj;
     private javax.swing.JButton jButtonObrisi;
+    private javax.swing.JButton jButtonOtkazi;
+    private javax.swing.JButton jButtonPretrazi;
+    private javax.swing.JButton jButtonResetuj;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdavci;
+    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldIme;
     // End of variables declaration//GEN-END:variables
 
     public void addBtnobrisiActionListener(ActionListener actionListener) {
         jButtonObrisi.addActionListener(actionListener);
     }
+
+    public void addBtnAzurirajActionListener(ActionListener actionListener) {
+        jButtonAzuriraj.addActionListener(actionListener);
+
+    }
+
+    public void addBtnPretraziActionListener(ActionListener actionListener) {
+        jButtonPretrazi.addActionListener(actionListener); //-- odavde ide dalje u kontroler
+
+    }
+
+    public void addBtnResetujActionListener(ActionListener actionListener) {
+        jButtonResetuj.addActionListener(actionListener); //-- odavde ide dalje u kontroler
+
+    }
+
+    public JButton getjButtonAzuriraj() {
+        return jButtonAzuriraj;
+    }
+
+    public void setjButtonAzuriraj(JButton jButtonAzuriraj) {
+        this.jButtonAzuriraj = jButtonAzuriraj;
+    }
+
+    public JButton getjButtonOtkazi() {
+        return jButtonOtkazi;
+    }
+
+    public void setjButtonOtkazi(JButton jButtonOtkazi) {
+        this.jButtonOtkazi = jButtonOtkazi;
+    }
+
+    public JButton getjButtonPretrazi() {
+        return jButtonPretrazi;
+    }
+
+    public void setjButtonPretrazi(JButton jButtonPretrazi) {
+        this.jButtonPretrazi = jButtonPretrazi;
+    }
+
+    public JTextField getjTextFieldEmail() {
+        return jTextFieldEmail;
+    }
+
+    public void setjTextFieldEmail(JTextField jTextFieldEmail) {
+        this.jTextFieldEmail = jTextFieldEmail;
+    }
+
+    public JTextField getjTextFieldIme() {
+        return jTextFieldIme;
+    }
+
+    public void setjTextFieldIme(JTextField jTextFieldIme) {
+        this.jTextFieldIme = jTextFieldIme;
+    }
+
 }

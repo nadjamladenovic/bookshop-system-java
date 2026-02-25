@@ -1,9 +1,12 @@
 package cordinator;
 
 import forme.DodajProdavcaForma;
+import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazProdavacaForma;
+import java.util.HashMap;
+import java.util.Map;
 import kontroleri.DodajProdavcaController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
@@ -27,9 +30,10 @@ public class Cordinator {
     private GlavnaFormaController glavnaFormaController;
     private PrikazProdavacaController ppController;
     private DodajProdavcaController dpController;
+    private Map<String, Object> parametri;
 
     public Cordinator() {
-
+        parametri = new HashMap<>();
     }
 
     public static Cordinator getInstance() {
@@ -64,7 +68,27 @@ public class Cordinator {
 
     public void otvoriDodajProdavcaFormu() {
         dpController = new DodajProdavcaController(new DodajProdavcaForma());
-        dpController.otvoriFormu();
+        dpController.otvoriFormu(FormaMod.DODAJ);
+    }
+    // dodavanje parametara
+
+    public void dodajParam(String s, Object o) {
+        parametri.put(s, o);
     }
 
+    // vracanje parametara
+    public Object vratiParam(String s) {
+        return parametri.get(s);
+    }
+
+    public void otvoriIzmeniProdavcaFormu() {
+        dpController = new DodajProdavcaController(new DodajProdavcaForma());
+        dpController.otvoriFormu(FormaMod.PROMENI);
+    }
+
+    public void osveziFormu() {
+        if (ppController != null) {
+            ppController.osveziFormu();
+        }
+    }
 }

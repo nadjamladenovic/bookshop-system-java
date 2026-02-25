@@ -4,6 +4,7 @@
  */
 package komunikacija;
 
+import cordinator.Cordinator;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -94,14 +95,38 @@ public class Komunikacija {
     }
 
     public void dodajProdavca(Prodavac p) throws Exception {
-       // posaljiZahtevSaExceptionom(Operacija.DODAJ_PRODAVCA, p);
-       Zahtev zahtev = new Zahtev(Operacija.DODAJ_PRODAVCA,p);
-       posiljalac.posalji(zahtev);
-       Odgovor odg = (Odgovor) primalac.primi();
-       if (odg.getOdgovor() == null){
-           System.out.println("GRESKA");
-       }else{
-           System.out.println("USPEH");
-       }
+        // posaljiZahtevSaExceptionom(Operacija.DODAJ_PRODAVCA, p);
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_PRODAVCA, p);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("GRESKA");
+        } else {
+            System.out.println("USPEH");
+        }
     }
-}
+
+    public void azurirajProdavca(Prodavac p) throws Exception {
+        // 1. Kreiramo zahtev za ažuriranje
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_PRODAVCA, p);
+
+        // 2. Šaljemo ga serveru preko pošiljaoca
+        posiljalac.posalji(zahtev);
+
+        // 3. Čekamo odgovor (ovo je ključno - program ovde stoji dok server ne odgovori)
+        Odgovor odg = (Odgovor) primalac.primi();
+
+        // 4. Proveravamo da li je odgovor stigao (kao što radiš u dodajProdavca)
+        if (odg.getOdgovor() == null) {
+            // Ako je null, znači da server nije vratio potvrdu o uspehu
+            System.out.println("GRESKA: Prodavac NIJE ažuriran u bazi.");
+            // Ovde možeš dodati i neku poruku korisniku (JOptionPane npr.)
+        } else {
+            // Ako nije null, operacija je prošla na serveru
+            System.out.println("USPEH: Prodavac je uspešno ažuriran.");
+            Cordinator.getInstance().osveziFormu();
+        }
+       
+    }
+    }
+

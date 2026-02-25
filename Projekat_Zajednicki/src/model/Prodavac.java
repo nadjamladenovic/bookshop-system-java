@@ -32,6 +32,14 @@ public class Prodavac implements ApstraktniDomenskiObjekat {
         this.lozinka = lozinka;
     }
 
+    public Prodavac(String imePrezime, String email, String korisnickoIme, String lozinka) {
+
+        this.imePrezime = imePrezime;
+        this.email = email;
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+    }
+
     public int getProdavacID() {
         return prodavacID;
     }
@@ -101,7 +109,6 @@ public class Prodavac implements ApstraktniDomenskiObjekat {
         return Objects.equals(this.lozinka, other.lozinka);
     }
 
-
     @Override
     public String vratiNazivTabele() {
         return "prodavac";
@@ -124,7 +131,7 @@ public class Prodavac implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "imePrezime,email,korisnickoIme,lozinka";
+        return "imePrezime, email, korisnickoIme, lozinka";
     }
 
     @Override
@@ -144,7 +151,7 @@ public class Prodavac implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        return "imePrezime='" + imePrezime + "', email=" + email + "', korisnickoIme='" + korisnickoIme + "', lozinka='" + lozinka + "'";
+        return "imePrezime='" + imePrezime + "', email='" + email + "', korisnickoIme='" + korisnickoIme + "', lozinka='" + lozinka + "'";
     }
 
 }

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 import model.ApstraktniDomenskiObjekat;
 import repository.db.DbConnectionFactory;
 import repository.db.DbRepository;
@@ -42,13 +43,34 @@ public class DbRepositoryGeneric implements DbRepository<ApstraktniDomenskiObjek
     @Override
     public void add(ApstraktniDomenskiObjekat param) throws Exception {
         //INSERT INTO KUPAC (IME,PRERZIME) VALUES ('Nadja','M')
-        String upit = "INSERT INTO " + param.vratiNazivTabele() + " (" + param.vratiKoloneZaUbacivanje()
+        /* String upit = "INSERT INTO " + param.vratiNazivTabele() + " (" + param.vratiKoloneZaUbacivanje()
                 + ") VALUES ( " + param.vratiVrednostiZaUbacivanje() + ")";
-        System.out.println(upit);
-        Statement st = DbConnectionFactory.getInstance().getConnection().createStatement(); // vraca br redova
+        System.out.println("IZVRŠAVAM UPIT: " + upit); // Ovo moraš videti u konzoli!
+        //System.out.println(upit);
+        /* Statement st = DbConnectionFactory.getInstance().getConnection().createStatement(); // vraca br redova
         st.executeUpdate(upit);
         st.close();
+         */
+ /* Connection conn = DbConnectionFactory.getInstance().getConnection();
+        Statement st = conn.createStatement();
+        int uspeh = st.executeUpdate(upit);
 
+        System.out.println("BROJ DODATIH REDOVA: " + uspeh); // Ako je 0, upit nije prošao. Ako je 1, prošao je!
+        st.close();*/
+        String upit = "INSERT INTO " + param.vratiNazivTabele() + " (" + param.vratiKoloneZaUbacivanje()
+                + ") VALUES (" + param.vratiVrednostiZaUbacivanje() + ")";
+
+        // ISPIŠI UPIT DA VIDIŠ ŠTA TAČNO IDE U BAZU
+        System.out.println("DEBUG BROKER: " + upit);
+
+        // OVO JE KLJUČNO: Uzimaš konekciju koja je već u transakciji
+        Connection conn = DbConnectionFactory.getInstance().getConnection();
+
+        Statement st = conn.createStatement();
+        int rows = st.executeUpdate(upit);
+
+        System.out.println("DEBUG BROKER: Dodato redova: " + rows);
+        st.close();
     }
 
     @Override
