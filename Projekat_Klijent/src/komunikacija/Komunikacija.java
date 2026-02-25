@@ -6,6 +6,8 @@ package komunikacija;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import model.Prodavac;
 
 /**
@@ -56,8 +58,50 @@ public class Komunikacija {
         // Provera: ako je odgovor null, znaci da login nije uspeo (pogresni podaci)
         if (odg.getOdgovor() == null) {
             System.out.println("Login neuspešan: Prodavac nije pronađen.");
-            return null; 
+            return null;
+        }
+        //Provera da li je stigao String umesto Prodavca
+        if (odg.getOdgovor() instanceof String) {
+            // Ako je server poslao poruku o grešci kao String, baci exception sa tim tekstom
+            throw new Exception((String) odg.getOdgovor());
         }
         return (Prodavac) odg.getOdgovor();
+    }
+
+    public List<Prodavac> ucitajProdavce() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_PRODAVCE, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            return new ArrayList<>();
+        }
+        return (List<Prodavac>) odg.getOdgovor();
+    }
+
+    public void obrisiProdavca(Prodavac p) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.OBRISI_PRODAVCA, p);
+    }
+
+    private void posaljiZahtevSaExceptionom(Operacija operacija, Object param) throws Exception {
+        Zahtev zahtev = new Zahtev(operacija, param);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() != null) {
+            throw (odg.getOdgovor() instanceof Exception)
+                    ? (Exception) odg.getOdgovor()
+                    : new Exception((String) odg.getOdgovor());
+        }
+    }
+
+    public void dodajProdavca(Prodavac p) throws Exception {
+       // posaljiZahtevSaExceptionom(Operacija.DODAJ_PRODAVCA, p);
+       Zahtev zahtev = new Zahtev(Operacija.DODAJ_PRODAVCA,p);
+       posiljalac.posalji(zahtev);
+       Odgovor odg = (Odgovor) primalac.primi();
+       if (odg.getOdgovor() == null){
+           System.out.println("GRESKA");
+       }else{
+           System.out.println("USPEH");
+       }
     }
 }

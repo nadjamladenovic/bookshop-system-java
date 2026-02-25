@@ -29,7 +29,7 @@ public class LoginController {
     }
 
     private void addActionListeners() {
-        
+
         lf.loginAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,9 +53,9 @@ public class LoginController {
                         JOptionPane.showMessageDialog(lf, "Ne moze da se otvori glavna forma i meni", "GRESKA", JOptionPane.ERROR_MESSAGE);
 
                     } else {
-                       // Cordinator.getInstance().setUlogovaniGrumer(ulogovani);
+                        cordinator.Cordinator.getInstance().setUlogovaniProdavac(ulogovani);
                         JOptionPane.showMessageDialog(lf, "Korisnicko ime i sifra su ispravni", "USPEH", JOptionPane.INFORMATION_MESSAGE);
-                       // Cordinator.getInstance().otvoriGlavnuFormu();
+                        cordinator.Cordinator.getInstance().otvoriGlavnuFormu();
                         lf.dispose();
 
                     }

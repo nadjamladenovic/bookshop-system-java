@@ -4,8 +4,12 @@
  */
 package controller;
 
+import java.util.List;
 import model.Prodavac;
 import operacija.login.LoginOperacija;
+import operacija.prodavci.DodajProdavcaSO;
+import operacija.prodavci.ObrisiProdavcaSO;
+import operacija.prodavci.UcitajProdavceSO;
 
 /**
  *
@@ -26,11 +30,29 @@ public class Controller {
     }
 
     public Prodavac login(Prodavac p) throws Exception {
-          //da proveri dalje u bazi  
+        //da proveri dalje u bazi  
         LoginOperacija operacija = new LoginOperacija();
         operacija.izvrsi(p, null);
         System.out.println("KLASA CONTROLLER login: " + operacija.getProdavac());
-        
+
         return operacija.getProdavac(); // vraca ga dalje u OKZ
+    }
+
+    public List<Prodavac> prikaziProdavce() throws Exception {
+        UcitajProdavceSO operacija = new UcitajProdavceSO();
+        operacija.izvrsi(null, null);
+
+        System.out.println("KLASA KONTROLER ucitajProdavceSO: " + operacija.getProdavci());
+        return operacija.getProdavci();
+    }
+
+    public void obrisiProdavca(Prodavac prodavac) throws Exception {
+        ObrisiProdavcaSO operacija = new ObrisiProdavcaSO();
+        operacija.izvrsi(prodavac, null);
+    }
+
+    public void dodajProdavca(Prodavac prodavac) throws Exception {
+        DodajProdavcaSO operacija=new DodajProdavcaSO();
+        operacija.izvrsi(prodavac, null); //--- ova metoda se izvrsava u okz
     }
 }

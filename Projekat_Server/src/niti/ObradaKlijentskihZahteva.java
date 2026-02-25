@@ -4,8 +4,10 @@
  */
 package niti;
 
+import controller.Controller;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import komunikacija.Odgovor;
@@ -50,9 +52,24 @@ public class ObradaKlijentskihZahteva extends Thread {
                         p = controller.Controller.getInstance().login(p); // hocu da ga setujem nazad u odgovor 
                         odgovor.setOdgovor(p);
                         break;
-                    //case: komunikacija.Operacija.LOGOUT:
-
-                 
+                    case UCITAJ_PRODAVCE:
+                        List<Prodavac> prodavci = Controller.getInstance().prikaziProdavce(); // ovde treba iz baze da se ucita -- idem preko kontrolera
+                        odgovor.setOdgovor(prodavci);
+                        break;
+                    case OBRISI_PRODAVCA:
+                        try {
+                        Prodavac prodavac = (Prodavac) zahtev.getParametar();
+                        Controller.getInstance().obrisiProdavca(prodavac);
+                        odgovor.setOdgovor(null);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
+                    case DODAJ_PRODAVCA:
+                        Prodavac prodavac = (Prodavac) zahtev.getParametar();
+                        Controller.getInstance().dodajProdavca(prodavac);
+                        odgovor.setOdgovor(null); // u klij str u komunikac
+                        break;
                     default:
                         System.out.println("Greska, operacija ne postoji!");
                 }
