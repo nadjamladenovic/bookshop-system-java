@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class StavkaRacuna implements ApstraktniDomenskiObjekat {
 
-    private Racun racunID;
+    private int racunID;
     private int rb;
     private double iznos;
     private int kolicina;
@@ -23,7 +24,7 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
     public StavkaRacuna() {
     }
 
-    public StavkaRacuna(Racun racunID, int rb, double iznos, int kolicina, double cena, Knjiga knjigaID) {
+    public StavkaRacuna(int racunID, int rb, double iznos, int kolicina, double cena, Knjiga knjigaID) {
         this.racunID = racunID;
         this.rb = rb;
         this.iznos = iznos;
@@ -32,11 +33,11 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
         this.knjigaID = knjigaID;
     }
 
-    public Racun getRacunID() {
+    public int getRacunID() {
         return racunID;
     }
 
-    public void setRacunID(Racun racunID) {
+    public void setRacunID(int racunID) {
         this.racunID = racunID;
     }
 
@@ -87,7 +88,26 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+
+            int rb = rs.getInt("rb");
+            double cenaUsluge = rs.getDouble("cenaUsluge");
+            int kolicina = rs.getInt("kolicina");
+            double iznos = rs.getDouble("iznos");
+            int racunID = rs.getInt("racunID");
+
+            int knjigaID = rs.getInt("knjigaID");
+            double cena = rs.getDouble("cena");
+            String naziv = rs.getString("naziv");
+            String autor = rs.getString("autor");
+
+            Knjiga k = new Knjiga(knjigaID, naziv, autor, cena);
+            StavkaRacuna stavka = new StavkaRacuna(racunID, rb, iznos, kolicina, cena, k);
+
+            lista.add(stavka);
+        }
+        return lista;
     }
 
     @Override
@@ -97,12 +117,12 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return rb+", "+iznos+", "+kolicina+", "+cena+", "+knjigaID.getKnjigaID();
+        return rb + ", " + iznos + ", " + kolicina + ", " + cena + ", " + knjigaID.getKnjigaID();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "stavkaracuna.racunID="+racunID.getRacunID()+" AND rb+"+rb;
+        return "stavkaracuna.racunID=" + racunID + " AND rb+" + rb;
     }
 
     @Override
@@ -112,7 +132,7 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-       return "iznos=" + iznos + ", kolicina=" + kolicina + ", cena=" + cena + ", knjigaID=" + knjigaID.getKnjigaID();
+        return "iznos=" + iznos + ", kolicina=" + kolicina + ", cena=" + cena + ", knjigaID=" + knjigaID.getKnjigaID();
     }
 
 }

@@ -9,5 +9,5 @@ package forme;
  * @author Nadja
  */
 public enum FormaMod {
-    DODAJ,PROMENI;
+    DODAJ,PROMENI,OBRISI,DETALJI;
 }

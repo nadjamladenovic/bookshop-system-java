@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -78,6 +79,27 @@ public class RadnaSmena implements ApstraktniDomenskiObjekat {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RadnaSmena other = (RadnaSmena) obj;
+        return Objects.equals(this.tipSmene, other.tipSmene);
+    }
+
+    @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
     while (rs.next()) {
@@ -115,6 +137,11 @@ public class RadnaSmena implements ApstraktniDomenskiObjekat {
     @Override
     public String vratiVrednostiZaIzmenu() {
         return "trajanje=" + trajanje + ", tipSmene='" + tipSmene + "', vremePocetka='" + vremePocetka + "', vremeKraja='" + vremeKraja + "'";
+    }
+
+    @Override
+    public String toString() {
+        return tipSmene;
     }
 
 }

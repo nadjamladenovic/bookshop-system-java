@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,8 +18,8 @@ public class Kupac implements ApstraktniDomenskiObjekat {
     private int kupacID;
     private String imePrezime;
     private String email;
-    private String korisnickoIme;
-    private String lozinka;
+  //  private String korisnickoIme;
+  //  private String lozinka;
     private String brojtelefona;
     private String adresa;
     private Grad gradID;
@@ -26,12 +27,11 @@ public class Kupac implements ApstraktniDomenskiObjekat {
     public Kupac() {
     }
 
-    public Kupac(int kupacID, String imePrezime, String email, String korisnickoIme, String lozinka, String brojtelefona, String adresa, Grad gradID) {
+    public Kupac(int kupacID, String imePrezime, String email, String brojtelefona, String adresa, Grad gradID) {
         this.kupacID = kupacID;
         this.imePrezime = imePrezime;
         this.email = email;
-        this.korisnickoIme = korisnickoIme;
-        this.lozinka = lozinka;
+        
         this.brojtelefona = brojtelefona;
         this.adresa = adresa;
         this.gradID = gradID;
@@ -61,21 +61,7 @@ public class Kupac implements ApstraktniDomenskiObjekat {
         this.email = email;
     }
 
-    public String getKorisnickoIme() {
-        return korisnickoIme;
-    }
-
-    public void setKorisnickoIme(String korisnickoIme) {
-        this.korisnickoIme = korisnickoIme;
-    }
-
-    public String getLozinka() {
-        return lozinka;
-    }
-
-    public void setLozinka(String lozinka) {
-        this.lozinka = lozinka;
-    }
+   
 
     public String getBrojtelefona() {
         return brojtelefona;
@@ -99,6 +85,11 @@ public class Kupac implements ApstraktniDomenskiObjekat {
 
     public void setGradID(Grad gradID) {
         this.gradID = gradID;
+    }
+
+    @Override
+    public String toString() {
+        return imePrezime;
     }
 
     @Override
@@ -138,17 +129,38 @@ public class Kupac implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //ova metoda je nakon sto smo izvrsili selekt upit
+        // vraca mi se neki result set kog treba da vratim kao listu
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int idKupca = rs.getInt("kupacID");
+            String imePrezime = rs.getString("imePrezime");
+            String email = rs.getString("email");
+            String brojTelefona=rs.getString("brojTelefona");
+            String adresa=rs.getString("adresa");
+            int gradID=rs.getInt("gradID");
+            String nazivGrada=rs.getString("nazivGrada");
+            int postanskiBroj=rs.getInt("postanskiBroj");
+            
+            Grad g=new Grad(gradID, nazivGrada, postanskiBroj);
+            
+            Kupac k=new Kupac(kupacID, imePrezime, email,  brojTelefona, adresa, g);
+            lista.add(k);
+
+        }
+
+        return lista;
     }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "imePrezime,email,korisnickoIme,lozinka,brojTelefona,adresa,gradID";
+        return "imePrezime,email,brojTelefona,adresa,gradID";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'"+imePrezime+"', '"+email+"', '"+korisnickoIme+"', '"+lozinka+"', '"+brojtelefona+"', "+gradID;
+        //return "'"+imePrezime+"', '"+email+"', '"+brojtelefona+"', "+gradID;
+        return "'" + imePrezime + "', '" + email + "', '" + brojtelefona + "', '" + adresa + "', " + gradID.getGradID();
     }
 
     @Override
@@ -163,7 +175,7 @@ public class Kupac implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        return "imePrezime='"+imePrezime+"', email='"+email+"', korisnickoIme='"+korisnickoIme+"', lozinka='"+lozinka+"', brojTelefona='"+brojtelefona+"', gradID="+gradID.getGradID();
+        return "imePrezime='"+imePrezime+"', email='"+email+"', brojTelefona='"+brojtelefona+"', gradID="+gradID.getGradID();
     }
 
 }

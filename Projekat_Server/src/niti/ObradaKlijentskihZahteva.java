@@ -16,7 +16,12 @@ import komunikacija.Operacija;
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
 import komunikacija.Zahtev;
+import model.Grad;
+import model.Knjiga;
+import model.Kupac;
 import model.Prodavac;
+import model.Racun;
+import model.RadnaSmena;
 
 /**
  *
@@ -76,11 +81,53 @@ public class ObradaKlijentskihZahteva extends Thread {
                             Controller.getInstance().azurirajProdavca(prodavacA);
                             odgovor.setOdgovor("Uspesno"); // u klij str u komunikac
                             break;
+                        case UCITAJ_RACUNE:
+                            List<Racun> racuni = Controller.getInstance().prikaziRacune();
+                            System.out.println("KLASA OKZ: ");
+                            System.out.println(racuni);
+                            odgovor.setOdgovor(racuni);
+                            break;
+                        case UCITAJ_KUPCE:
+                            List<Kupac> kupci = Controller.getInstance().prikaziKupce();
+                            odgovor.setOdgovor(kupci);
+                            break;
+                        case UCITAJ_KNJIGE:
+                            List<Knjiga> knjiga = Controller.getInstance().prikaziKnjige();
+                            odgovor.setOdgovor(knjiga);
+                            break;
+                        case UCITAJ_SMENE:
+                            List<RadnaSmena> smene = Controller.getInstance().ucitajSmene();
+                            odgovor.setOdgovor(smene);
+                            break;
+                        case OBRISI_KUPCA:
+                          try {
+                            Kupac k = (Kupac) zahtev.getParametar();
+                            Controller.getInstance().obrisiKupca(k);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        case UCITAJ_GRAD:
+                            List<Grad> grad = Controller.getInstance().ucitajGradove();
+                            odgovor.setOdgovor(grad);
+                            break;
+                        case DODAJ_KUPCA:
+                            Kupac k2 = (Kupac) zahtev.getParametar();
+                            Controller.getInstance().dodajKupca(k2);
+                            odgovor.setOdgovor(null);
+                            break;
+                        case PROMENI_KUPCA:
+                            Kupac k3 = (Kupac) zahtev.getParametar();
+                            Controller.getInstance().PromeniKupca(k3);
+                            odgovor.setOdgovor(null);
+                            break;
                         default:
                             System.out.println("Greska, operacija ne postoji!");
                     }
                     posiljalac.posalji(odgovor);
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                     odgovor.setOdgovor(ex.getMessage());
                     posiljalac.posalji(odgovor);
                 }

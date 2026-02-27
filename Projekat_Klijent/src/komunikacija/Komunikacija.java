@@ -9,7 +9,12 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import model.Grad;
+import model.Knjiga;
+import model.Kupac;
 import model.Prodavac;
+import model.Racun;
+import model.RadnaSmena;
 
 /**
  *
@@ -126,7 +131,83 @@ public class Komunikacija {
             System.out.println("USPEH: Prodavac je uspešno ažuriran.");
             Cordinator.getInstance().osveziFormu();
         }
-       
-    }
+
     }
 
+    public List<Racun> ucitajRacune() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_RACUNE, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            return new ArrayList<>();
+        }
+        // DODAJ OVU PROVERU DA VIDIŠ ŠTA SERVER ŠALJE
+        if (odg.getOdgovor() instanceof String) {
+            System.err.println("SERVER VRATIO GREŠKU UMESTO LISTE: " + odg.getOdgovor());
+            return new ArrayList<>(); // Ili baci Exception
+        }
+        return (List<Racun>) odg.getOdgovor();
+    }
+
+    public List<Kupac> ucitajKupce() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_KUPCE, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            return new ArrayList<>();
+        }
+        return (List<Kupac>) odg.getOdgovor();
+    }
+
+    public List<Knjiga> ucitajKnjige() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_KNJIGE, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            return new ArrayList<>();
+        }
+        return (List<Knjiga>) odg.getOdgovor();
+    }
+
+    public List<RadnaSmena> vratiSmene() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_SMENE, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            return new ArrayList<>();
+        }
+        return (List<RadnaSmena>) odg.getOdgovor();
+    }
+
+    public void PromeniKupca(Kupac k) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.PROMENI_KUPCA, k);
+        Cordinator.getInstance().osveziFormu();
+    }
+
+    public void obrisiKupca(Kupac k) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.OBRISI_KUPCA, k);
+    }
+
+    public List<Grad> ucitajGrad() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_GRAD, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            return new ArrayList<>();
+        }
+        return (List<Grad>) odg.getOdgovor();
+    }
+
+    public void dodajKupca(Kupac k) throws Exception {
+        /*
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_KUPCA, k);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("GRESKA");
+        } else {
+            System.out.println("USPEH");
+        }*/
+        posaljiZahtevSaExceptionom(Operacija.DODAJ_KUPCA, k);
+    }
+}

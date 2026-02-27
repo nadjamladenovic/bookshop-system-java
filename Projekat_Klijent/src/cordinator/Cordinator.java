@@ -1,16 +1,22 @@
 package cordinator;
 
+import forme.DodajKupcaForma;
 import forme.DodajProdavcaForma;
 import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazProdavacaForma;
+import forme.PrikazRacunaForma;
+import forme.UbaciSmenaForma;
 import java.util.HashMap;
 import java.util.Map;
+import kontroleri.DodajKupcaController;
 import kontroleri.DodajProdavcaController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazProdavacaController;
+import kontroleri.PrikazRacunaController;
+import kontroleri.UbaciSmenuController;
 import model.Prodavac;
 
 /*
@@ -31,6 +37,9 @@ public class Cordinator {
     private PrikazProdavacaController ppController;
     private DodajProdavcaController dpController;
     private Map<String, Object> parametri;
+    private PrikazRacunaController prController;
+    private UbaciSmenuController usController;
+    private DodajKupcaController dkController;
 
     public Cordinator() {
         parametri = new HashMap<>();
@@ -90,5 +99,24 @@ public class Cordinator {
         if (ppController != null) {
             ppController.osveziFormu();
         }
+    }
+
+    public void otvoriPrikazRacunaFormu() {
+        prController = new PrikazRacunaController(new PrikazRacunaForma());
+        prController.otvoriFormu();
+    }
+
+    public void otvoriUbaciSmenuForma() {
+        usController = new UbaciSmenuController(new UbaciSmenaForma());
+        usController.otvoriFormu();
+    }
+
+    public void otvoriDodajKupcaFormu() {
+        dkController = new DodajKupcaController(new DodajKupcaForma());
+        dkController.otvoriFormu(FormaMod.DODAJ);
+    }
+
+    public void otvoriPrikazKupacaFormu() {
+
     }
 }

@@ -82,7 +82,7 @@ public class Prodavac implements ApstraktniDomenskiObjekat {
 
     @Override
     public String toString() {
-        return "Prodavac{" + imePrezime;
+        return imePrezime;
     }
 
     @Override

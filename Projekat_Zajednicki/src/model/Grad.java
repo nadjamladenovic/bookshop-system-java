@@ -56,6 +56,32 @@ public class Grad implements ApstraktniDomenskiObjekat{
     }
 
     @Override
+    public String toString() {
+        return nazivGrada;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Grad other = (Grad) obj;
+        return this.gradID == other.gradID;
+    }
+
+    @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
         while(rs.next()){

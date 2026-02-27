@@ -36,6 +36,13 @@ public class Knjiga implements ApstraktniDomenskiObjekat {
         this.godinaIzdanja = godinaIzdanja;
     }
 
+    public Knjiga(int knjigaID, String naziv, String autor, double cena) {
+        this.knjigaID = knjigaID;
+        this.naziv = naziv;
+        this.autor = autor;
+        this.cena = cena;
+    }
+
     public int getKnjigaID() {
         return knjigaID;
     }
@@ -118,7 +125,7 @@ public class Knjiga implements ApstraktniDomenskiObjekat {
 
     @Override
     public String toString() {
-        return "Knjiga{" + "knjigaID=" + knjigaID + ", naziv=" + naziv + ", autor=" + autor + '}';
+        return  naziv + " " + autor ;
     }
 
     @Override
