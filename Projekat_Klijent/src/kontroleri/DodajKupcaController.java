@@ -46,13 +46,13 @@ public class DodajKupcaController {
                 String brojTelefona = dkf.getjTextFieldBrojTelefona().getText().trim();
                 String adresa = dkf.getjTextFieldAdresa().getText().trim();
                 Grad grad = (Grad) dkf.getjComboBoxGrad().getSelectedItem();
-
+                int id = Integer.parseInt(dkf.getjTextFieldIDKupca().getText());
                 if (imePrezime.equals("") || email.equals("") || brojTelefona.equals("") || adresa.equals("") || grad.equals("")) {
                     JOptionPane.showMessageDialog(dkf, "Morate popuniti sva polja", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
-                Kupac k = new Kupac(-1, imePrezime, email, brojTelefona, adresa, grad);
+                Kupac k = new Kupac(id, imePrezime, email, brojTelefona, adresa, grad);
                 try {
                     Komunikacija.getInstance().dodajKupca(k);
                     JOptionPane.showMessageDialog(dkf, "Sistem je uspeo da doda kupca", "USPEH", JOptionPane.INFORMATION_MESSAGE);
@@ -74,8 +74,8 @@ public class DodajKupcaController {
                 String brojTelefona = dkf.getjTextFieldBrojTelefona().getText().trim();
                 String adresa = dkf.getjTextFieldAdresa().getText().trim();
                 Grad grad = (Grad) dkf.getjComboBoxGrad().getSelectedItem();
-
-                Kupac k = new Kupac(-1, imePrezime, email, brojTelefona, adresa, grad);
+                int id = Integer.parseInt(dkf.getjTextFieldIDKupca().getText());
+                Kupac k = new Kupac(id, imePrezime, email, brojTelefona, adresa, grad);
                 try {
                     Komunikacija.getInstance().PromeniKupca(k);
                     JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio kupca", "USPEH", JOptionPane.INFORMATION_MESSAGE);
@@ -97,8 +97,8 @@ public class DodajKupcaController {
                 String brojTelefona = dkf.getjTextFieldBrojTelefona().getText().trim();
                 String adresa = dkf.getjTextFieldAdresa().getText().trim();
                 Grad grad = (Grad) dkf.getjComboBoxGrad().getSelectedItem();
-
-                Kupac k = new Kupac(-1, imePrezime, email, brojTelefona, adresa, grad);
+                int id = Integer.parseInt(dkf.getjTextFieldIDKupca().getText());
+                Kupac k = new Kupac(id, imePrezime, email, brojTelefona, adresa, grad);
 
                 try {
                     Komunikacija.getInstance().obrisiKupca(k);

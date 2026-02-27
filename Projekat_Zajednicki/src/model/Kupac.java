@@ -144,7 +144,7 @@ public class Kupac implements ApstraktniDomenskiObjekat {
             
             Grad g=new Grad(gradID, nazivGrada, postanskiBroj);
             
-            Kupac k=new Kupac(kupacID, imePrezime, email,  brojTelefona, adresa, g);
+            Kupac k=new Kupac(idKupca, imePrezime, email,  brojTelefona, adresa, g);
             lista.add(k);
 
         }

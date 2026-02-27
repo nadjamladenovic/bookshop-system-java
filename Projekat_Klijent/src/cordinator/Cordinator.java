@@ -5,6 +5,7 @@ import forme.DodajProdavcaForma;
 import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
+import forme.PrikazKupacaForma;
 import forme.PrikazProdavacaForma;
 import forme.PrikazRacunaForma;
 import forme.UbaciSmenaForma;
@@ -14,6 +15,7 @@ import kontroleri.DodajKupcaController;
 import kontroleri.DodajProdavcaController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
+import kontroleri.PrikazKupacaController;
 import kontroleri.PrikazProdavacaController;
 import kontroleri.PrikazRacunaController;
 import kontroleri.UbaciSmenuController;
@@ -40,6 +42,7 @@ public class Cordinator {
     private PrikazRacunaController prController;
     private UbaciSmenuController usController;
     private DodajKupcaController dkController;
+    private PrikazKupacaController pkController;
 
     public Cordinator() {
         parametri = new HashMap<>();
@@ -117,6 +120,28 @@ public class Cordinator {
     }
 
     public void otvoriPrikazKupacaFormu() {
+        pkController = new PrikazKupacaController(new PrikazKupacaForma());
+        pkController.otvoriFormu();
+        // registracija kontrolera
+        setPrikazKupcaController(pkController);
+    }
 
+    public void otvoriDetaljiKupcaFormu() {
+        dkController = new DodajKupcaController(new DodajKupcaForma());
+        dkController.otvoriFormu(FormaMod.DETALJI);
+    }
+
+    public void otvoriObrisiKupcaFormu() {
+        dkController = new DodajKupcaController(new DodajKupcaForma());
+        dkController.otvoriFormu(FormaMod.OBRISI);
+    }
+
+    private void setPrikazKupcaController(PrikazKupacaController pkController) {
+        this.pkController = pkController;
+    }
+
+    public void otvoriPromeniKupcaFormu() {
+        dkController = new DodajKupcaController(new DodajKupcaForma());
+        dkController.otvoriFormu(FormaMod.PROMENI);
     }
 }
