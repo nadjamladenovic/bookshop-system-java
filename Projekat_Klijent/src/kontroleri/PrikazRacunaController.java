@@ -142,6 +142,18 @@ public class PrikazRacunaController {
                 }
             }
         });
+        prf.addBtnResetujActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pripremiFormu();
+                prf.getjTextFieldRacunID().setText("");
+                prf.getjTextFieldDan().setText("");
+                prf.getjTextFieldMesec().setText("");
+                prf.getjTextFieldGodina().setText("");
+                prf.getjTextFieldUkupanIznos().setText("");
+
+            }
+        });
     }
 
     private void addMouseListener() {

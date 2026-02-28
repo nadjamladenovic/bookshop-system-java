@@ -20,6 +20,7 @@ public class UbaciSmenaForma extends javax.swing.JFrame {
      */
     public UbaciSmenaForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

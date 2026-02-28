@@ -64,6 +64,7 @@ public class ModelTabeleRacuni extends AbstractTableModel {
 
     public void setLista(List<Racun> lista) {
         this.lista = lista;
+        fireTableDataChanged();
     }
 
 }

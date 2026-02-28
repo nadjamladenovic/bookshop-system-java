@@ -76,8 +76,11 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-              <Component id="jButtonPretrazi" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jButtonPretrazi" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonResetuj" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -99,6 +102,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldUkupanIznos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonResetuj" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -120,7 +124,7 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jComboBoxKupci" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -258,6 +262,11 @@
     <Component class="javax.swing.JButton" name="jButtonDetaljiRacuna">
       <Properties>
         <Property name="text" type="java.lang.String" value="Detalji racuna"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonResetuj">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Resetuj"/>
       </Properties>
     </Component>
   </SubComponents>

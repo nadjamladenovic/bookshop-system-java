@@ -20,6 +20,7 @@ public class DodajProdavcaForma extends javax.swing.JFrame {
      */
     public DodajProdavcaForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

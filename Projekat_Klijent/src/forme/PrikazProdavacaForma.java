@@ -20,6 +20,7 @@ public class PrikazProdavacaForma extends javax.swing.JFrame {
      */
     public PrikazProdavacaForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

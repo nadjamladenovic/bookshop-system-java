@@ -65,6 +65,18 @@ public class PretraziRacunSO extends ApstraktnaGenerickaOperacija {
         System.out.println(finalniUslov);
 
         racuni = broker.getAll(new Racun(), finalniUslov);
+        if (racuni != null) {
+            for (model.Racun r : racuni) {
+                // Pozivamo stavke za svaki pronađeni račun
+                String uslovStavke = " JOIN knjiga k ON k.knjigaID = stavkaracuna.knjigaID "
+                                   + "WHERE stavkaracuna.racunID=" + r.getRacunID();
+                
+                List<model.StavkaRacuna> stavke = broker.getAll(new model.StavkaRacuna(), uslovStavke);
+                r.setStavke(stavke); // Sada račun "nosi" svoje stavke sa sobom na klijent
+                
+                System.out.println("DEBUG: Pronađeno " + stavke.size() + " stavki za filtrirani račun ID: " + r.getRacunID());
+            }
+        }
     }
 
 }

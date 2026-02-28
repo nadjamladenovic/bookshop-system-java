@@ -133,6 +133,25 @@ public class ObradaKlijentskihZahteva extends Thread {
                             racuni = Controller.getInstance().pretraziRacun(racun);
                             odgovor.setOdgovor(racuni);
                             break;
+                        case KREIRAJ_RACUN:
+                            Racun r = (Racun) zahtev.getParametar();
+                            Controller.getInstance().kreirajRacun(r);
+                            odgovor.setOdgovor(null);
+                            break;
+                        case AZURIRAJ_RACUN:
+                            racun = (Racun) zahtev.getParametar();
+                            Controller.getInstance().promeniRacun(racun);
+                            odgovor.setOdgovor(null);
+                            break;
+                        case OBRISI_RACUN:
+                        try {
+                            Racun racun2 = (Racun) zahtev.getParametar();
+                            Controller.getInstance().obrisiRacun(racun2);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
                         default:
                             System.out.println("Greska, operacija ne postoji!");
                     }

@@ -88,7 +88,7 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        /*  List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
         while (rs.next()) {
 
             int rb = rs.getInt("rb");
@@ -107,22 +107,51 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
 
             lista.add(stavka);
         }
+        return lista;*/
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int rb = rs.getInt("rb");
+            int kolicina = rs.getInt("kolicina");
+            double iznos = rs.getDouble("iznos");
+            int racunID = rs.getInt("racunID");
+            int knjigaID = rs.getInt("knjigaID");
+            double cena = rs.getDouble("cena");
+
+            // Obezbeđujemo default vrednosti za knjigu
+            String naziv = "N/A";
+            String autor = "N/A";
+
+            // Proveravamo da li kolone 'naziv' i 'autor' postoje u ResultSet-u
+            // Ovo sprečava SQLSyntaxErrorException: Column 'naziv' not found
+            try {
+                naziv = rs.getString("naziv");
+                autor = rs.getString("autor");
+            } catch (java.sql.SQLException e) {
+                // Ako kolone ne postoje (jer nema JOIN-a), program nastavlja dalje sa "N/A"
+                // To je sasvim dovoljno jer nam za brisanje trebaju samo racunID i rb
+            }
+
+            Knjiga k = new Knjiga(knjigaID, naziv, autor, cena);
+            StavkaRacuna stavka = new StavkaRacuna(racunID, rb, iznos, kolicina, cena, k);
+
+            lista.add(stavka);
+        }
         return lista;
     }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "rd,iznos,kolicina,cena,knjigaID";
+        return "racunID,rb,iznos,kolicina,cena,knjigaID";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return rb + ", " + iznos + ", " + kolicina + ", " + cena + ", " + knjigaID.getKnjigaID();
+        return racunID + ", " + rb + ", " + iznos + ", " + kolicina + ", " + cena + ", " + knjigaID.getKnjigaID();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "stavkaracuna.racunID=" + racunID + " AND rb+" + rb;
+        return "racunID=" + racunID + " AND rb=" + rb;
     }
 
     @Override

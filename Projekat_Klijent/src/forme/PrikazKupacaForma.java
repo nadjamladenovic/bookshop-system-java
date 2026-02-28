@@ -22,7 +22,7 @@ public class PrikazKupacaForma extends javax.swing.JFrame {
      */
     public PrikazKupacaForma() {
         initComponents();
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**

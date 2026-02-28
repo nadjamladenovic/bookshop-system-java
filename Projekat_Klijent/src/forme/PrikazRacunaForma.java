@@ -23,6 +23,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
      */
     public PrikazRacunaForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -55,6 +56,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         jComboBoxKupci = new javax.swing.JComboBox<>();
         jButtonPretrazi = new javax.swing.JButton();
         jButtonDetaljiRacuna = new javax.swing.JButton();
+        jButtonResetuj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,8 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         jButtonPretrazi.setText("Pretrazi");
 
         jButtonDetaljiRacuna.setText("Detalji racuna");
+
+        jButtonResetuj.setText("Resetuj");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,8 +149,10 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxProdavci, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxKupci, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(59, 59, 59)
-                .addComponent(jButtonPretrazi)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonPretrazi)
+                    .addComponent(jButtonResetuj))
                 .addGap(342, 342, 342))
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
@@ -163,7 +169,8 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldUkupanIznos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldUkupanIznos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonResetuj))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -181,7 +188,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                     .addComponent(jComboBoxProdavci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxKupci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
@@ -300,12 +307,23 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         this.jTextFieldUkupanIznos = jTextFieldUkupanIznos;
     }
 
+    public JButton getjButtonResetuj() {
+        return jButtonResetuj;
+    }
+
+    public void setjButtonResetuj(JButton jButtonResetuj) {
+        this.jButtonResetuj = jButtonResetuj;
+    }
+    public void addBtnResetujActionListener(ActionListener actionListener) {
+        jButtonResetuj.addActionListener(actionListener);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAzurirajRacun;
     private javax.swing.JButton jButtonDetaljiRacuna;
     private javax.swing.JButton jButtonOtkazi;
     private javax.swing.JButton jButtonPretrazi;
+    private javax.swing.JButton jButtonResetuj;
     private javax.swing.JComboBox<Kupac> jComboBoxKupci;
     private javax.swing.JComboBox<Prodavac> jComboBoxProdavci;
     private javax.swing.JLabel jLabel1;

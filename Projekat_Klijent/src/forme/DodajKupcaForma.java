@@ -19,6 +19,7 @@ public class DodajKupcaForma extends javax.swing.JFrame {
      */
     public DodajKupcaForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

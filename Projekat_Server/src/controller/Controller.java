@@ -23,7 +23,10 @@ import operacija.prodavci.AzurirajProdavcaSO;
 import operacija.prodavci.DodajProdavcaSO;
 import operacija.prodavci.ObrisiProdavcaSO;
 import operacija.prodavci.UcitajProdavceSO;
+import operacija.racuni.KreirajRacunSO;
+import operacija.racuni.ObrisiRacunSO;
 import operacija.racuni.PretraziRacunSO;
+import operacija.racuni.PromeniRacunSO;
 import operacija.racuni.UcitajRacuneSO;
 import operacija.smene.UbaciSmenuSo;
 import operacija.smene.UcitajSmeneSO;
@@ -142,5 +145,21 @@ public class Controller {
         PretraziRacunSO operacija = new PretraziRacunSO();
         operacija.izvrsi(racun, null);
         return operacija.getRacuni();
+    }
+
+    public void kreirajRacun(Racun r) throws Exception {
+        KreirajRacunSO operacija = new KreirajRacunSO();
+        operacija.izvrsi(r, null);
+        System.out.println("KLASA CONTROLLER kreirajRacun: " + r);
+    }
+
+    public void promeniRacun(Racun racun) throws Exception {
+        PromeniRacunSO operacija = new PromeniRacunSO();
+        operacija.izvrsi(racun, null);
+    }
+
+    public void obrisiRacun(Racun racun2) throws Exception {
+        ObrisiRacunSO operacija=new ObrisiRacunSO();
+        operacija.izvrsi(racun2, null);
     }
 }

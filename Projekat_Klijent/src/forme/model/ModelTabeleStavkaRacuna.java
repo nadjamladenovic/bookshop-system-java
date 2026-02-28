@@ -77,6 +77,7 @@ public class ModelTabeleStavkaRacuna extends AbstractTableModel {
 
     public void setLista(List<StavkaRacuna> lista) {
         this.lista = lista;
+        fireTableDataChanged();
     }
 
 }

@@ -224,4 +224,12 @@ public class Komunikacija {
         if (odg.getOdgovor() == null) return new ArrayList<>();
         return (List<Racun>) odg.getOdgovor();
     }
+
+    public void PromeniRacun(Racun r) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.AZURIRAJ_RACUN, r);
+    }
+
+    public void KreirajRacun(Racun r) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.KREIRAJ_RACUN, r);
+    }
 }

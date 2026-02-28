@@ -55,6 +55,32 @@ public class Cordinator {
         return instance;
     }
 
+    public Prodavac getUlogovaniProdavac() {
+        return ulogovaniProdavac;
+    }
+
+    public void setUlogovaniProdavac(Prodavac ulogovaniProdavac) {
+        this.ulogovaniProdavac = ulogovaniProdavac;
+    }
+    // dodavanje parametara
+
+    public void dodajParam(String s, Object o) {
+        parametri.put(s, o);
+    }
+
+    // vracanje parametara
+    public Object vratiParam(String s) {
+        return parametri.get(s);
+    }
+
+    public PrikazKupacaController getPkController() {
+        return pkController;
+    }
+
+    public void setPkController(PrikazKupacaController pkController) {
+        this.pkController = pkController;
+    }
+
     public void otvoriLoginFormu() {
         loginController = new LoginController(new LoginForma());
         loginController.otvoriFormu();
@@ -70,27 +96,9 @@ public class Cordinator {
         ppController.otvoriFormu();
     }
 
-    public Prodavac getUlogovaniProdavac() {
-        return ulogovaniProdavac;
-    }
-
-    public void setUlogovaniProdavac(Prodavac ulogovaniProdavac) {
-        this.ulogovaniProdavac = ulogovaniProdavac;
-    }
-
     public void otvoriDodajProdavcaFormu() {
         dpController = new DodajProdavcaController(new DodajProdavcaForma());
         dpController.otvoriFormu(FormaMod.DODAJ);
-    }
-    // dodavanje parametara
-
-    public void dodajParam(String s, Object o) {
-        parametri.put(s, o);
-    }
-
-    // vracanje parametara
-    public Object vratiParam(String s) {
-        return parametri.get(s);
     }
 
     public void otvoriIzmeniProdavcaFormu() {
