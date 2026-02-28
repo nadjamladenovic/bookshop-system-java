@@ -13,6 +13,7 @@ import model.Grad;
 import model.Knjiga;
 import model.Kupac;
 import model.Prodavac;
+import model.ProdavacRS;
 import model.Racun;
 import model.RadnaSmena;
 
@@ -88,17 +89,6 @@ public class Komunikacija {
         posaljiZahtevSaExceptionom(Operacija.OBRISI_PRODAVCA, p);
     }
 
-    private void posaljiZahtevSaExceptionom(Operacija operacija, Object param) throws Exception {
-        Zahtev zahtev = new Zahtev(operacija, param);
-        posiljalac.posalji(zahtev);
-        Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() != null) {
-            throw (odg.getOdgovor() instanceof Exception)
-                    ? (Exception) odg.getOdgovor()
-                    : new Exception((String) odg.getOdgovor());
-        }
-    }
-
     public void dodajProdavca(Prodavac p) throws Exception {
         // posaljiZahtevSaExceptionom(Operacija.DODAJ_PRODAVCA, p);
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_PRODAVCA, p);
@@ -134,20 +124,18 @@ public class Komunikacija {
 
     }
 
-    public List<Racun> ucitajRacune() {
-        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_RACUNE, null);
+    private void posaljiZahtevSaExceptionom(Operacija operacija, Object param) throws Exception {
+        Zahtev zahtev = new Zahtev(operacija, param);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
-        if (odg.getOdgovor() == null) {
-            return new ArrayList<>();
+        if (odg.getOdgovor() != null) {
+            throw (odg.getOdgovor() instanceof Exception)
+                    ? (Exception) odg.getOdgovor()
+                    : new Exception((String) odg.getOdgovor());
         }
-        // DODAJ OVU PROVERU DA VIDIŠ ŠTA SERVER ŠALJE
-        if (odg.getOdgovor() instanceof String) {
-            System.err.println("SERVER VRATIO GREŠKU UMESTO LISTE: " + odg.getOdgovor());
-            return new ArrayList<>(); // Ili baci Exception
-        }
-        return (List<Racun>) odg.getOdgovor();
     }
+
+    
 
     public List<Kupac> ucitajKupce() {
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_KUPCE, null);
@@ -157,6 +145,28 @@ public class Komunikacija {
             return new ArrayList<>();
         }
         return (List<Kupac>) odg.getOdgovor();
+    }
+
+    public void PromeniKupca(Kupac k) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.PROMENI_KUPCA, k);
+        Cordinator.getInstance().osveziFormu();
+    }
+
+    public void obrisiKupca(Kupac k) throws Exception {
+        posaljiZahtevSaExceptionom(Operacija.OBRISI_KUPCA, k);
+    }
+
+    public void dodajKupca(Kupac k) throws Exception {
+        /*
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_KUPCA, k);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("GRESKA");
+        } else {
+            System.out.println("USPEH");
+        }*/
+        posaljiZahtevSaExceptionom(Operacija.DODAJ_KUPCA, k);
     }
 
     public List<Knjiga> ucitajKnjige() {
@@ -179,15 +189,6 @@ public class Komunikacija {
         return (List<RadnaSmena>) odg.getOdgovor();
     }
 
-    public void PromeniKupca(Kupac k) throws Exception {
-        posaljiZahtevSaExceptionom(Operacija.PROMENI_KUPCA, k);
-        Cordinator.getInstance().osveziFormu();
-    }
-
-    public void obrisiKupca(Kupac k) throws Exception {
-        posaljiZahtevSaExceptionom(Operacija.OBRISI_KUPCA, k);
-    }
-
     public List<Grad> ucitajGrad() {
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_GRAD, null);
         posiljalac.posalji(zahtev);
@@ -198,16 +199,21 @@ public class Komunikacija {
         return (List<Grad>) odg.getOdgovor();
     }
 
-    public void dodajKupca(Kupac k) throws Exception {
-        /*
-        Zahtev zahtev = new Zahtev(Operacija.DODAJ_KUPCA, k);
+    public void UbaciProdavacSmena(ProdavacRS smena) throws Exception {
+         posaljiZahtevSaExceptionom(Operacija.UBACI_SMENU, smena);
+    }
+    public List<Racun> ucitajRacune() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_RACUNE, null);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         if (odg.getOdgovor() == null) {
-            System.out.println("GRESKA");
-        } else {
-            System.out.println("USPEH");
-        }*/
-        posaljiZahtevSaExceptionom(Operacija.DODAJ_KUPCA, k);
+            return new ArrayList<>();
+        }
+        // DODAJ OVU PROVERU DA VIDIŠ ŠTA SERVER ŠALJE
+        if (odg.getOdgovor() instanceof String) {
+            System.err.println("SERVER VRATIO GREŠKU UMESTO LISTE: " + odg.getOdgovor());
+            return new ArrayList<>(); // Ili baci Exception
+        }
+        return (List<Racun>) odg.getOdgovor();
     }
 }

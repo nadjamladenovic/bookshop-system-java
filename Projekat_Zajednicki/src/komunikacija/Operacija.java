@@ -18,11 +18,13 @@ public enum Operacija implements Serializable {
     AZURIRAJ_PRODAVCA,
     UCITAJ_RACUNE,
     UCITAJ_KNJIGE,
-    UCITAJ_SMENE,
+    
     UCITAJ_GRAD,
     UCITAJ_KUPCE,
     DODAJ_KUPCA,
     OBRISI_KUPCA,
-    PROMENI_KUPCA
+    PROMENI_KUPCA,
+    UCITAJ_SMENE,
+    UBACI_SMENU
     
 }

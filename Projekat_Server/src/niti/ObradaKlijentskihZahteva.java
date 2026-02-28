@@ -20,6 +20,7 @@ import model.Grad;
 import model.Knjiga;
 import model.Kupac;
 import model.Prodavac;
+import model.ProdavacRS;
 import model.Racun;
 import model.RadnaSmena;
 
@@ -81,23 +82,9 @@ public class ObradaKlijentskihZahteva extends Thread {
                             Controller.getInstance().azurirajProdavca(prodavacA);
                             odgovor.setOdgovor("Uspesno"); // u klij str u komunikac
                             break;
-                        case UCITAJ_RACUNE:
-                            List<Racun> racuni = Controller.getInstance().prikaziRacune();
-                            System.out.println("KLASA OKZ: ");
-                            System.out.println(racuni);
-                            odgovor.setOdgovor(racuni);
-                            break;
                         case UCITAJ_KUPCE:
                             List<Kupac> kupci = Controller.getInstance().prikaziKupce();
                             odgovor.setOdgovor(kupci);
-                            break;
-                        case UCITAJ_KNJIGE:
-                            List<Knjiga> knjiga = Controller.getInstance().prikaziKnjige();
-                            odgovor.setOdgovor(knjiga);
-                            break;
-                        case UCITAJ_SMENE:
-                            List<RadnaSmena> smene = Controller.getInstance().ucitajSmene();
-                            odgovor.setOdgovor(smene);
                             break;
                         case OBRISI_KUPCA:
                           try {
@@ -108,10 +95,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                             odgovor.setOdgovor(e);
                         }
                         break;
-                        case UCITAJ_GRAD:
-                            List<Grad> grad = Controller.getInstance().ucitajGradove();
-                            odgovor.setOdgovor(grad);
-                            break;
                         case DODAJ_KUPCA:
                             Kupac k2 = (Kupac) zahtev.getParametar();
                             Controller.getInstance().dodajKupca(k2);
@@ -121,6 +104,29 @@ public class ObradaKlijentskihZahteva extends Thread {
                             Kupac k3 = (Kupac) zahtev.getParametar();
                             Controller.getInstance().PromeniKupca(k3);
                             odgovor.setOdgovor(null);
+                            break;
+                        case UCITAJ_KNJIGE:
+                            List<Knjiga> knjiga = Controller.getInstance().prikaziKnjige();
+                            odgovor.setOdgovor(knjiga);
+                            break;
+                        case UCITAJ_SMENE:
+                            List<RadnaSmena> smene = Controller.getInstance().ucitajSmene();
+                            odgovor.setOdgovor(smene);
+                            break;
+                        case UBACI_SMENU:
+                            ProdavacRS prodavacRS = (ProdavacRS) zahtev.getParametar();
+                            Controller.getInstance().ubaciProdavacSmena(prodavacRS);
+                            odgovor.setOdgovor(null);
+                            break;
+                        case UCITAJ_GRAD:
+                            List<Grad> grad = Controller.getInstance().ucitajGradove();
+                            odgovor.setOdgovor(grad);
+                            break;
+                        case UCITAJ_RACUNE:
+                            List<Racun> racuni = Controller.getInstance().prikaziRacune();
+                            System.out.println("KLASA OKZ: ");
+                            System.out.println(racuni);
+                            odgovor.setOdgovor(racuni);
                             break;
                         default:
                             System.out.println("Greska, operacija ne postoji!");

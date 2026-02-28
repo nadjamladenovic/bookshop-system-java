@@ -9,6 +9,7 @@ import model.Grad;
 import model.Knjiga;
 import model.Kupac;
 import model.Prodavac;
+import model.ProdavacRS;
 import model.Racun;
 import model.RadnaSmena;
 import operacija.gradovi.UcitajGradoveSO;
@@ -23,6 +24,7 @@ import operacija.prodavci.DodajProdavcaSO;
 import operacija.prodavci.ObrisiProdavcaSO;
 import operacija.prodavci.UcitajProdavceSO;
 import operacija.racuni.UcitajRacuneSO;
+import operacija.smene.UbaciSmenuSo;
 import operacija.smene.UcitajSmeneSO;
 
 /**
@@ -127,5 +129,13 @@ public class Controller {
         PromeniKupcaSO operacija=new PromeniKupcaSO();
         operacija.izvrsi(k3, null);
         System.out.println("KLASA CONTROLLER promeniKupca: " + k3);
+    }
+
+    
+
+    public void ubaciProdavacSmena(ProdavacRS prodavacRS) throws Exception {
+        UbaciSmenuSo operacija = new UbaciSmenuSo();
+        operacija.izvrsi(prodavacRS, null);
+        System.out.println("KLASA CONTROLLER ubaciProdavacSmena: " + prodavacRS);
     }
 }
