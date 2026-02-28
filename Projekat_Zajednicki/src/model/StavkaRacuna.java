@@ -92,7 +92,7 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat {
         while (rs.next()) {
 
             int rb = rs.getInt("rb");
-            double cenaUsluge = rs.getDouble("cenaUsluge");
+            double cenaUsluge = rs.getDouble("cena");
             int kolicina = rs.getInt("kolicina");
             double iznos = rs.getDouble("iznos");
             int racunID = rs.getInt("racunID");

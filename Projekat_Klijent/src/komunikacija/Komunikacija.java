@@ -216,4 +216,12 @@ public class Komunikacija {
         }
         return (List<Racun>) odg.getOdgovor();
     }
+
+    public List<Racun> pretraziRacune(Racun racun) {
+        Zahtev zahtev = new Zahtev(Operacija.PRETRAZI_RACUN, racun);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) return new ArrayList<>();
+        return (List<Racun>) odg.getOdgovor();
+    }
 }

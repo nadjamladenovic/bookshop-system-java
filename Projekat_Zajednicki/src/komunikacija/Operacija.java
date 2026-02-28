@@ -17,6 +17,7 @@ public enum Operacija implements Serializable {
     DODAJ_PRODAVCA,
     AZURIRAJ_PRODAVCA,
     UCITAJ_RACUNE,
+    PRETRAZI_RACUN,
     UCITAJ_KNJIGE,
     
     UCITAJ_GRAD,

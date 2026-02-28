@@ -110,17 +110,10 @@ public class Kupac implements ApstraktniDomenskiObjekat {
             return false;
         }
         final Kupac other = (Kupac) obj;
-        if (!Objects.equals(this.imePrezime, other.imePrezime)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.brojtelefona, other.brojtelefona)) {
-            return false;
-        }
-        return Objects.equals(this.adresa, other.adresa);
+        return this.kupacID == other.kupacID;
     }
+
+   
 
     @Override
     public String vratiNazivTabele() {

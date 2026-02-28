@@ -144,4 +144,9 @@ public class Cordinator {
         dkController = new DodajKupcaController(new DodajKupcaForma());
         dkController.otvoriFormu(FormaMod.PROMENI);
     }
+
+    public void otvoriGlavnuFormu(FormaMod formaMod) {
+        glavnaFormaController = new GlavnaFormaController(new GlavnaForma());
+        glavnaFormaController.otvoriFormu(formaMod);
+    }
 }

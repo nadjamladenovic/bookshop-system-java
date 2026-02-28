@@ -4,7 +4,13 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import model.Kupac;
+import model.Prodavac;
 
 /**
  *
@@ -32,6 +38,23 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         jTableRacuni = new javax.swing.JTable();
         jButtonOtkazi = new javax.swing.JButton();
         jButtonAzurirajRacun = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldRacunID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldUkupanIznos = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldDan = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldMesec = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldGodina = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBoxProdavci = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBoxKupci = new javax.swing.JComboBox<>();
+        jButtonPretrazi = new javax.swing.JButton();
+        jButtonDetaljiRacuna = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,43 +72,143 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableRacuni);
 
         jButtonOtkazi.setText("Otkazi");
+        jButtonOtkazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOtkaziActionPerformed(evt);
+            }
+        });
 
         jButtonAzurirajRacun.setText("Azuriraj racun");
+
+        jLabel1.setText("ID racuna:");
+
+        jLabel2.setText("Ukupan iznos:");
+
+        jLabel3.setText("Datum izdavanja:");
+
+        jLabel4.setText("dan");
+
+        jLabel5.setText("mesec");
+
+        jLabel6.setText("godina");
+
+        jLabel7.setText("Prodavac:");
+
+        jLabel8.setText("Kupac:");
+
+        jButtonPretrazi.setText("Pretrazi");
+
+        jButtonDetaljiRacuna.setText("Detalji racuna");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(146, 146, 146)
+                .addComponent(jButtonDetaljiRacuna)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonAzurirajRacun)
                 .addGap(172, 172, 172)
                 .addComponent(jButtonOtkazi)
                 .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMesec, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                            .addComponent(jTextFieldGodina, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldUkupanIznos)
+                            .addComponent(jTextFieldRacunID)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxProdavci, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxKupci, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(59, 59, 59)
+                .addComponent(jButtonPretrazi)
+                .addGap(342, 342, 342))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonOtkazi)
-                    .addComponent(jButtonAzurirajRacun))
-                .addGap(19, 19, 19))
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldRacunID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldUkupanIznos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldDan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldMesec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldGodina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBoxProdavci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxKupci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOtkazi)
+                            .addComponent(jButtonAzurirajRacun)
+                            .addComponent(jButtonDetaljiRacuna))
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPretrazi)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOtkaziActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonOtkaziActionPerformed
+
     /**
      * @param args the command line arguments
      */
-
     public JTable getjTableRacuni() {
         return jTableRacuni;
     }
@@ -96,12 +219,121 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
     public void setjTableRacuni(JTable jTableRacuni) {
         this.jTableRacuni = jTableRacuni;
     }
-   
+
+    public JButton getjButtonAzurirajRacun() {
+        return jButtonAzurirajRacun;
+    }
+
+    public void setjButtonAzurirajRacun(JButton jButtonAzurirajRacun) {
+        this.jButtonAzurirajRacun = jButtonAzurirajRacun;
+    }
+
+    public JButton getjButtonDetaljiRacuna() {
+        return jButtonDetaljiRacuna;
+    }
+
+    public void setjButtonDetaljiRacuna(JButton jButtonDetaljiRacuna) {
+        this.jButtonDetaljiRacuna = jButtonDetaljiRacuna;
+    }
+
+    public JButton getjButtonOtkazi() {
+        return jButtonOtkazi;
+    }
+
+    public void setjButtonOtkazi(JButton jButtonOtkazi) {
+        this.jButtonOtkazi = jButtonOtkazi;
+    }
+
+    public JComboBox<Kupac> getjComboBoxKupci() {
+        return jComboBoxKupci;
+    }
+
+    public void setjComboBoxKupci(JComboBox<Kupac> jComboBoxKupci) {
+        this.jComboBoxKupci = jComboBoxKupci;
+    }
+
+    public JComboBox<Prodavac> getjComboBoxProdavci() {
+        return jComboBoxProdavci;
+    }
+
+    public void setjComboBoxProdavci(JComboBox<Prodavac> jComboBoxProdavci) {
+        this.jComboBoxProdavci = jComboBoxProdavci;
+    }
+
+    public JTextField getjTextFieldDan() {
+        return jTextFieldDan;
+    }
+
+    public void setjTextFieldDan(JTextField jTextFieldDan) {
+        this.jTextFieldDan = jTextFieldDan;
+    }
+
+    public JTextField getjTextFieldGodina() {
+        return jTextFieldGodina;
+    }
+
+    public void setjTextFieldGodina(JTextField jTextFieldGodina) {
+        this.jTextFieldGodina = jTextFieldGodina;
+    }
+
+    public JTextField getjTextFieldMesec() {
+        return jTextFieldMesec;
+    }
+
+    public void setjTextFieldMesec(JTextField jTextFieldMesec) {
+        this.jTextFieldMesec = jTextFieldMesec;
+    }
+
+    public JTextField getjTextFieldRacunID() {
+        return jTextFieldRacunID;
+    }
+
+    public void setjTextFieldRacunID(JTextField jTextFieldRacunID) {
+        this.jTextFieldRacunID = jTextFieldRacunID;
+    }
+
+    public JTextField getjTextFieldUkupanIznos() {
+        return jTextFieldUkupanIznos;
+    }
+
+    public void setjTextFieldUkupanIznos(JTextField jTextFieldUkupanIznos) {
+        this.jTextFieldUkupanIznos = jTextFieldUkupanIznos;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAzurirajRacun;
+    private javax.swing.JButton jButtonDetaljiRacuna;
     private javax.swing.JButton jButtonOtkazi;
+    private javax.swing.JButton jButtonPretrazi;
+    private javax.swing.JComboBox<Kupac> jComboBoxKupci;
+    private javax.swing.JComboBox<Prodavac> jComboBoxProdavci;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableRacuni;
+    private javax.swing.JTextField jTextFieldDan;
+    private javax.swing.JTextField jTextFieldGodina;
+    private javax.swing.JTextField jTextFieldMesec;
+    private javax.swing.JTextField jTextFieldRacunID;
+    private javax.swing.JTextField jTextFieldUkupanIznos;
     // End of variables declaration//GEN-END:variables
+    public void pretraziRacunAddActionListener(ActionListener actionListener) {
+        jButtonPretrazi.addActionListener(actionListener);
+    }
+
+    public void detaljiAddActionListener(ActionListener actionListener) {
+        jButtonDetaljiRacuna.addActionListener(actionListener);
+
+    }
+
+    public void azurirajRacunAddActionListener(ActionListener actionListener) {
+        jButtonAzurirajRacun.addActionListener(actionListener);
+    }
 }

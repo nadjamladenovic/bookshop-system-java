@@ -23,6 +23,7 @@ import operacija.prodavci.AzurirajProdavcaSO;
 import operacija.prodavci.DodajProdavcaSO;
 import operacija.prodavci.ObrisiProdavcaSO;
 import operacija.prodavci.UcitajProdavceSO;
+import operacija.racuni.PretraziRacunSO;
 import operacija.racuni.UcitajRacuneSO;
 import operacija.smene.UbaciSmenuSo;
 import operacija.smene.UcitajSmeneSO;
@@ -78,18 +79,18 @@ public class Controller {
         operacija.izvrsi(prodavacA, null);
     }
 
-    public List<Racun> prikaziRacune() throws Exception {
-        UcitajRacuneSO operacija = new UcitajRacuneSO();
+    public List<RadnaSmena> ucitajSmene() throws Exception {
+        UcitajSmeneSO operacija = new UcitajSmeneSO();
         operacija.izvrsi(null, null);
-        System.out.println("KLASA Controller prikaziRacune" + operacija.getRacuni());
-        return operacija.getRacuni();
+        System.out.println("KASA CONTROLLER ucitajSmene: " + operacija.getSmene());
+        return operacija.getSmene();
     }
 
-    public List<Kupac> prikaziKupce() throws Exception {
-        PrikazKupcaSO operacija = new PrikazKupcaSO();
+    public List<Grad> ucitajGradove() throws Exception {
+        UcitajGradoveSO operacija = new UcitajGradoveSO();
         operacija.izvrsi(null, null);
-        System.out.println("KLASA CONTROLLER prikaziKupce: " + operacija.getKupci());
-        return operacija.getKupci();
+        System.out.println("KLASA CONTROLLER ucitajGradove: " + operacija.getListaGradova());
+        return operacija.getListaGradova();
     }
 
     public List<Knjiga> prikaziKnjige() throws Exception {
@@ -99,43 +100,47 @@ public class Controller {
         return operacija.getKnjige();
     }
 
-    public List<RadnaSmena> ucitajSmene() throws Exception {
-        UcitajSmeneSO operacija = new UcitajSmeneSO();
-        operacija.izvrsi(null, null);
-        System.out.println("KASA CONTROLLER ucitajSmene: " + operacija.getSmene());
-        return operacija.getSmene();
-    }
-
     public void obrisiKupca(Kupac k) throws Exception {
         ObrisiKupcaSO operacija = new ObrisiKupcaSO();
         operacija.izvrsi(k, null);
         System.out.println("KLASA Controller obrisi kupca");
     }
 
-    public List<Grad> ucitajGradove() throws Exception {
-        UcitajGradoveSO operacija=new UcitajGradoveSO();
+    public List<Kupac> prikaziKupce() throws Exception {
+        PrikazKupcaSO operacija = new PrikazKupcaSO();
         operacija.izvrsi(null, null);
-        System.out.println("KLASA CONTROLLER ucitajGradove: " + operacija.getListaGradova());
-        return operacija.getListaGradova();
+        System.out.println("KLASA CONTROLLER prikaziKupce: " + operacija.getKupci());
+        return operacija.getKupci();
     }
 
     public void dodajKupca(Kupac k2) throws Exception {
-        DodajKupcaSO operacija=new DodajKupcaSO();
+        DodajKupcaSO operacija = new DodajKupcaSO();
         operacija.izvrsi(k2, null);
-         System.out.println("KLASA CONTROLLER dodajKupca: " + k2);
+        System.out.println("KLASA CONTROLLER dodajKupca: " + k2);
     }
 
     public void PromeniKupca(Kupac k3) throws Exception {
-        PromeniKupcaSO operacija=new PromeniKupcaSO();
+        PromeniKupcaSO operacija = new PromeniKupcaSO();
         operacija.izvrsi(k3, null);
         System.out.println("KLASA CONTROLLER promeniKupca: " + k3);
     }
-
-    
 
     public void ubaciProdavacSmena(ProdavacRS prodavacRS) throws Exception {
         UbaciSmenuSo operacija = new UbaciSmenuSo();
         operacija.izvrsi(prodavacRS, null);
         System.out.println("KLASA CONTROLLER ubaciProdavacSmena: " + prodavacRS);
+    }
+
+    public List<Racun> prikaziRacune() throws Exception {
+        UcitajRacuneSO operacija = new UcitajRacuneSO();
+        operacija.izvrsi(null, null);
+        System.out.println("KLASA Controller prikaziRacune" + operacija.getRacuni());
+        return operacija.getRacuni();
+    }
+
+    public List<Racun> pretraziRacun(Racun racun) throws Exception {
+        PretraziRacunSO operacija = new PretraziRacunSO();
+        operacija.izvrsi(racun, null);
+        return operacija.getRacuni();
     }
 }

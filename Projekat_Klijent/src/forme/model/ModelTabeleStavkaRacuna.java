@@ -71,4 +71,12 @@ public class ModelTabeleStavkaRacuna extends AbstractTableModel {
 
     }
 
+    public List<StavkaRacuna> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<StavkaRacuna> lista) {
+        this.lista = lista;
+    }
+
 }
