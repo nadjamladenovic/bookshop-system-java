@@ -101,6 +101,7 @@ public class PrikazKupacaController {
                         Cordinator.getInstance().otvoriPromeniKupcaFormu();
                         pripremiFormu();
                     } catch (Exception ex) {
+                         JOptionPane.showMessageDialog(pkf, "Sistem ne moze da nadje kupca", "GRESKA", JOptionPane.ERROR_MESSAGE);
                         Logger.getLogger(PrikazKupacaController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 

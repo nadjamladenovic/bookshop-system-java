@@ -23,22 +23,12 @@ public class DodajKupcaSO extends ApstraktnaGenerickaOperacija {
         if (kupac.getImePrezime() == null || kupac.getImePrezime().isEmpty()) {
             throw new Exception("Sistem ne moze da zapamti kupca");
         }
-        for (int i = 0; i < kupac.getImePrezime().length(); i++) {
-            char c = kupac.getImePrezime().charAt(i);
-            if (!Character.isLetter(c)) {
-                throw new Exception("Sistem ne moze da zapamti kupac imePrezime");
-            }
-        }
+      
         // ** email **
         if (kupac.getEmail() == null || kupac.getEmail().isEmpty()) {
             throw new Exception("Sistem ne moze da zapamti kupca");
         }
-        for (int i = 0; i < kupac.getEmail().length(); i++) {
-            char c = kupac.getEmail().charAt(i);
-            if (!Character.isLetter(c)) {
-                throw new Exception("Sistem ne moze da zapamti kupac email");
-            }
-        }
+       
         // **BROJ TELEFONA **
         if (kupac.getBrojtelefona() == null || kupac.getBrojtelefona().isEmpty() || kupac.getBrojtelefona().length() < 5 || kupac.getBrojtelefona().length() > 10) {
             throw new Exception("Sistem ne moze da zapamti kupca");
@@ -53,12 +43,7 @@ public class DodajKupcaSO extends ApstraktnaGenerickaOperacija {
         if (kupac.getAdresa() == null || kupac.getAdresa().isEmpty()) {
             throw new Exception("Sistem ne moze da zapamti kupca");
         }
-        for (int i = 0; i < kupac.getAdresa().length(); i++) {
-            char c = kupac.getAdresa().charAt(i);
-            if (!Character.isLetter(c)) {
-                throw new Exception("Sistem ne moze da zapamti kupac adresa");
-            }
-        }
+     
 
         if (kupac.getGradID() == null) {
             throw new Exception("Sistem ne moze da zapamti kupca");

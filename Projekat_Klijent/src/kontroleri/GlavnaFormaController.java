@@ -50,7 +50,7 @@ public class GlavnaFormaController {
             try {
                 kolicina = Integer.parseInt(gf.getjTextFieldKolicina().getText().trim());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(gf, "Kolicina mora biti ceo broj!", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(gf, "Količina mora biti ceo broj!", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
@@ -174,10 +174,10 @@ public class GlavnaFormaController {
             }
 
             Komunikacija.getInstance().PromeniRacun(r);
-            JOptionPane.showMessageDialog(gf, "Sistem je zapamtio racun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(gf, "Sistem je zapamtio račun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             Logger.getLogger(GlavnaFormaController.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(gf, "Sistem ne moze da zapamti racun", "GRESKA", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(gf, "Sistem ne može da zapamti račun", "GRESKA", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -237,7 +237,7 @@ public class GlavnaFormaController {
             }
 
             Komunikacija.getInstance().KreirajRacun(r);
-            JOptionPane.showMessageDialog(gf, "Sistem je kreirao racun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(gf, "Sistem je kreirao račun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
 
             gf.getjTextFieldIDRacuna().setText("");
             gf.getjTextFieldKolicina().setText("");
@@ -248,7 +248,7 @@ public class GlavnaFormaController {
             gf.getjTableStavkeRacuna().setModel(new ModelTabeleStavkaRacuna(new ArrayList<>()));
         } catch (Exception ex) {
             Logger.getLogger(GlavnaFormaController.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(gf, "Sistem ne moze da kreira racun", "GRESKA", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(gf, "Sistem ne može da kreira račun", "GRESKA", JOptionPane.ERROR_MESSAGE);
         }
     }
 

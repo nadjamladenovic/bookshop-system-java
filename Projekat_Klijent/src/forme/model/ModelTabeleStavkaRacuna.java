@@ -15,7 +15,7 @@ import model.StavkaRacuna;
 public class ModelTabeleStavkaRacuna extends AbstractTableModel {
 
     List<StavkaRacuna> lista;
-    String[] kolone = {"racunID", "rb", "iznos", "kolicina", "cena", "Naziv knjige","Autor knjige"};
+    String[] kolone = { "rb", "iznos", "kolicina", "cena", "Naziv knjige","Autor knjige"};
 
     public ModelTabeleStavkaRacuna(List<StavkaRacuna> lista) {
         this.lista = lista;
@@ -41,19 +41,18 @@ public class ModelTabeleStavkaRacuna extends AbstractTableModel {
         StavkaRacuna sR = lista.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return sR.getRacunID();
-            case 1:
                 return sR.getRb();
-            case 2:
+            case 1:
                 return sR.getIznos();
-            case 3:
+            case 2:
                 return sR.getKolicina();
-            case 4:
+            case 3:
                 return sR.getCena();
-            case 5:
+            case 4:
                 return sR.getKnjigaID().getNaziv();
-            case 6:
+            case 5:
                 return sR.getKnjigaID().getAutor();
+
             default:
                 return "NA";
         }

@@ -46,19 +46,20 @@ public class DodajKupcaController {
                 String brojTelefona = dkf.getjTextFieldBrojTelefona().getText().trim();
                 String adresa = dkf.getjTextFieldAdresa().getText().trim();
                 Grad grad = (Grad) dkf.getjComboBoxGrad().getSelectedItem();
-                int id = Integer.parseInt(dkf.getjTextFieldIDKupca().getText());
+                //int id = Integer.parseInt(dkf.getjTextFieldIDKupca().getText());
                 if (imePrezime.equals("") || email.equals("") || brojTelefona.equals("") || adresa.equals("") || grad.equals("")) {
                     JOptionPane.showMessageDialog(dkf, "Morate popuniti sva polja", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
-                Kupac k = new Kupac(id, imePrezime, email, brojTelefona, adresa, grad);
+                Kupac k = new Kupac(-1, imePrezime, email, brojTelefona, adresa, grad);
                 try {
+                   // if (true) throw new Exception("Veštačka greška");
                     Komunikacija.getInstance().dodajKupca(k);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je uspeo da doda kupca", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao kupca", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dkf, "Sistem nije uspeo da doda kupca", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem ne moze da kreira kupca", "GRESKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -77,11 +78,13 @@ public class DodajKupcaController {
                 int id = Integer.parseInt(dkf.getjTextFieldIDKupca().getText());
                 Kupac k = new Kupac(id, imePrezime, email, brojTelefona, adresa, grad);
                 try {
+                    //if (true) throw new Exception("Simulacija greške");
+                    if (true) throw new Exception("Veštačka greška");
                     Komunikacija.getInstance().PromeniKupca(k);
                     JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio kupca", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception exp) {
-                    JOptionPane.showMessageDialog(dkf, exp.getMessage(), "GRESKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf,"Sistem ne moze da zapamti kupca" , "GRESKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -125,6 +128,7 @@ public class DodajKupcaController {
                 dkf.getjButtonDodaj().setVisible(true);
                 dkf.getjButtonDodaj().setEnabled(true);
                 dkf.getjComboBoxGrad().setSelectedItem(null);
+                dkf.getjTextFieldIDKupca().setEnabled(false);
                 break;
 
             case PROMENI:

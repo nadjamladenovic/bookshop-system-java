@@ -18,13 +18,14 @@ public class KreirajRacunSO extends ApstraktnaGenerickaOperacija {
     @Override
     protected void preduslovi(Object param) throws Exception {
         if (param == null || !(param instanceof Racun)) {
-            throw new Exception("Sistem ne moze da kreira racun");
+            throw new Exception("Sistem ne može da kreira račun.");
         }
         //datum ne moze iz proslosti
         Racun r = (Racun) param;
         if (r.getUkupanIznos() < 0) {
-            throw new Exception("Sistem ne moze da kreira racun");
+            throw new Exception("Sistem ne može da kreira račun.");
         }
+        //jos neki preduslov
     }
 
     @Override

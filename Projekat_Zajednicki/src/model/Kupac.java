@@ -18,8 +18,6 @@ public class Kupac implements ApstraktniDomenskiObjekat {
     private int kupacID;
     private String imePrezime;
     private String email;
-  //  private String korisnickoIme;
-  //  private String lozinka;
     private String brojtelefona;
     private String adresa;
     private Grad gradID;

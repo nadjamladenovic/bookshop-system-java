@@ -34,22 +34,27 @@
                   <Component id="jLabel8" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jButtonPromeni" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="jTextFieldAdresa" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jTextFieldBrojTelefona" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jTextFieldEmail" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jTextFieldIDKupca" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jTextFieldImePrezime" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldIDKupca" alignment="1" min="-2" pref="176" max="-2" attributes="0"/>
+                          <Component id="jTextFieldImePrezime" alignment="1" min="-2" pref="176" max="-2" attributes="0"/>
+                          <Component id="jTextFieldEmail" alignment="1" min="-2" pref="176" max="-2" attributes="0"/>
+                          <Component id="jTextFieldBrojTelefona" alignment="1" min="-2" pref="176" max="-2" attributes="0"/>
+                          <Component id="jTextFieldAdresa" alignment="1" min="-2" pref="176" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jComboBoxGrad" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jButtonDodaj" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jButtonObrisi" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jComboBoxGrad" min="-2" pref="177" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jButtonDodaj" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="jButtonObrisi" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="129" max="32767" attributes="0"/>

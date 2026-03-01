@@ -52,17 +52,18 @@ public class PrikazRacunaController {
             public void actionPerformed(ActionEvent e) {
                 int red = prf.getjTableRacuni().getSelectedRow();
                 if (red == -1) {
-                    JOptionPane.showMessageDialog(prf, "Morate odabrati racun", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(prf, "Morate odabrati račun!", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
                 } else {
                     try {
+                       // if (true) throw new Exception("Veštačka greška");
                         ModelTabeleRacuni mtr = (ModelTabeleRacuni) prf.getjTableRacuni().getModel();
                         Racun r = mtr.getLista().get(red);
 
-                        JOptionPane.showMessageDialog(prf, "Sistem je nasao racun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Sistem je našao račun.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                         Cordinator.getInstance().dodajParam("racunZaDetalje", r);
                         Cordinator.getInstance().otvoriGlavnuFormu(FormaMod.DETALJI);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da nadje racun", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Sistem ne može da nađe račun.", "GRESKA", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -72,7 +73,7 @@ public class PrikazRacunaController {
             public void actionPerformed(ActionEvent e) {
                 int red = prf.getjTableRacuni().getSelectedRow();
                 if (red == -1) {
-                    JOptionPane.showMessageDialog(prf, "Morate odabrati racun", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(prf, "Morate odabrati račun!", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
                 } else {
                     try {
                         ModelTabeleRacuni mtr = (ModelTabeleRacuni) prf.getjTableRacuni().getModel();
@@ -82,7 +83,7 @@ public class PrikazRacunaController {
                         Cordinator.getInstance().dodajParam("racunZaIzmenu", r);
                         Cordinator.getInstance().otvoriGlavnuFormu(FormaMod.PROMENI);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da nadje racun", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Sistem ne može da nađe račun.", "GRESKA", JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
@@ -110,7 +111,7 @@ public class PrikazRacunaController {
                             racun.setUkupanIznos(Double.parseDouble(prf.getjTextFieldUkupanIznos().getText()));
                         }
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(prf, "Neispravan format numerickih vrednosti", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Neispravan format numeričkih vrednosti", "UPOZORENJE", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
 
@@ -130,10 +131,11 @@ public class PrikazRacunaController {
                     racun.setKupacID((Kupac) prf.getjComboBoxKupci().getSelectedItem());
                     List<Racun> racuni = Komunikacija.getInstance().pretraziRacune(racun);
                     if (racuni.isEmpty()) {
-                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da nadje reacune po zadatim kriterjumima", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Sistem ne može da nađe račune po zadatim kriterijumima", "GRESKA", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(prf, "Sistem je nasao racune po zadatim kriterjumima", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Sistem je našao račune po zadatim kriterijumima", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     }
+                    
                     ModelTabeleRacuni modelTabeleRacuni = (ModelTabeleRacuni) prf.getjTableRacuni().getModel();
                     modelTabeleRacuni.setLista(racuni);
                     modelTabeleRacuni.fireTableDataChanged();
