@@ -25,7 +25,7 @@ public class KreirajRacunSO extends ApstraktnaGenerickaOperacija {
         if (r.getUkupanIznos() < 0) {
             throw new Exception("Sistem ne može da kreira račun.");
         }
-        //jos neki preduslov
+       
     }
 
     @Override
